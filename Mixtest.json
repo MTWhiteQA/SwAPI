@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "eac53f17-6a14-4fc9-ac1c-b0d4bfe18215",
+		"name": "SwAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28036198",
+		"_collection_link": "https://winter-escape-73936.postman.co/workspace/BusyProject~4458a5fd-09cb-4e55-a799-4b2d15b750c0/collection/28036198-eac53f17-6a14-4fc9-ac1c-b0d4bfe18215?action=share&creator=28036198&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Response is Json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Respons is Json\", function () {\r",
+							"    pm.response.to.have.jsonBody ();\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test body\", function(){\r",
+							"    const getdata = pm.response.json()\r",
+							"    \r",
+							"    pm.expect(getdata).to.have.property(\"people\");\r",
+							"    pm.expect(getdata).to.have.property(\"planets\");\r",
+							"    pm.expect(getdata).to.have.property(\"films\");\r",
+							"    pm.expect(getdata).to.have.property(\"species\");\r",
+							"    pm.expect(getdata).to.have.property(\"vehicles\");\r",
+							"    pm.expect(getdata).to.have.property(\"starships\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://swapi.dev/api/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Name \"C-3PO\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"With Auth\" , function() {\r",
+							"     pm.response.to.be.not.have.equal(\"Auth\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://swapi.dev/api/people/2",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"people",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "People",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Respons body is not NULL\" , function(){\r",
+							"    const getNULL = pm.response.json();\r",
+							"    pm.expect(getNULL.next).not.equal(null);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Response should be okay to process\", function () {\r",
+							"    pm.response.to.not.be.error;\r",
+							" });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/people",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"people"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Films",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response should be okay to process\", function () {\r",
+							"    pm.response.to.be.ok\r",
+							"    pm.response.to.not.have.jsonBody(\"error\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/films/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"films",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Starships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Environment to be production\", function () {\r",
+							"    pm.expect(pm.environment.get(\"env\")).to.not.equal(\"production\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.dev/api/starships/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"starships",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "People_Luke Skywalker (Variable)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Test Headers\" , function(){\r",
+							"    pm.response.to.have.be.header(\"Server\", \"nginx/1.16.1\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}people/?search={{name}}",
+					"host": [
+						"{{url}}people"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "{{name}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
